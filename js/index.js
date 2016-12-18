@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -16,35 +16,36 @@ var MarkUp = function (_React$Component) {
 
     _this.updateText = function (event) {
       _this.setState({
-        text: event.target.value
+        value: event.target.value
       });
     };
 
-    _this.renderText = function () {
-      var markedResult = marked('I am using __markdown__.');
+    _this.renderText = function (text) {
+      var markedResult = marked(text);
       return { __html: markedResult };
     };
 
-    _this.state = { text: 'Heading\n=======\n\nSub-heading\n-----------\n\n ### Another deeper heading\n\nParagraphs are separated\nby a blank line.\n\nLeave 2 spaces at the end of a line to do a\n line break\n\nText attributes *italic*, **bold**, \n `monospace`,~~strikethrough~~ .\n\nShopping list:\n\n* apples\n * oranges\n * pears\n\nNumbered list:\n\n 1. apples\n 2. oranges\n 3. pears\n\n The rain---not the reign---in\n Spain.\n\n *[Herman Fassett](https://freecodecamp.com/hermanfassett)*'
+    _this.state = {
+      value: 'Heading\n=======\n\nSub-heading\n-----------\n\n ### Another deeper heading\n\nParagraphs are separated\nby a blank line.\n\nLeave 2 spaces at the end of a line to do a\n line break\n\nText attributes *italic*, **bold**, \n `monospace`,~~strikethrough~~ .\n\nShopping list:\n\n * apples\n * oranges\n * pears\n\nNumbered list:\n\n 1. apples \n 2. oranges\n 3. pears\n\n write your own markdown to test.\n\n *[Nada Sadek](https://freecodecamp.com/nadasadek)*'
     };
     return _this;
   }
 
   MarkUp.prototype.render = function render() {
     return React.createElement(
-      'div',
-      { className: 'row' },
+      "div",
+      { className: "row" },
       React.createElement(
-        'div',
-        { className: 'col-md-6' },
-        React.createElement(Input, { inputValue: this.state.text, textChanged: this.updateText })
+        "div",
+        { className: "col-md-6" },
+        React.createElement(Input, { inputValue: this.state.value, textChanged: this.updateText })
       ),
       React.createElement(
-        'div',
-        { className: 'col-md-6' },
-        ' ',
-        React.createElement('span', { dangerouslySetInnerHTML: this.renderText }),
-        ' '
+        "div",
+        { className: "col-md-6" },
+        " ",
+        React.createElement("div", { dangerouslySetInnerHTML: this.renderText(this.state.value) }),
+        " "
       )
     );
   };
@@ -63,13 +64,11 @@ var Input = function (_React$Component2) {
 
   Input.prototype.render = function render() {
     return React.createElement(
-      'div',
+      "div",
       null,
-      React.createElement(
-        'textarea',
-        { rows: '60', cols: '70', onChange: this.props.textChanged },
-        this.props.inputValue
-      )
+      " ",
+      React.createElement("textarea", { type: "text", rows: "30", cols: "70", onChange: this.props.textChanged, value: this.props.inputValue }),
+      " "
     );
   };
 

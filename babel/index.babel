@@ -1,23 +1,24 @@
 class MarkUp extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {text: 'Heading\n=======\n\nSub-heading\n-----------\n\n ### Another deeper heading\n\nParagraphs are separated\nby a blank line.\n\nLeave 2 spaces at the end of a line to do a\n line break\n\nText attributes *italic*, **bold**, \n `monospace`,~~strikethrough~~ .\n\nShopping list:\n\n* apples\n * oranges\n * pears\n\nNumbered list:\n\n 1. apples\n 2. oranges\n 3. pears\n\n The rain---not the reign---in\n Spain.\n\n *[Herman Fassett](https://freecodecamp.com/hermanfassett)*'
+    this.state = {
+      value: 'Heading\n=======\n\nSub-heading\n-----------\n\n ### Another deeper heading\n\nParagraphs are separated\nby a blank line.\n\nLeave 2 spaces at the end of a line to do a\n line break\n\nText attributes *italic*, **bold**, \n `monospace`,~~strikethrough~~ .\n\nShopping list:\n\n * apples\n * oranges\n * pears\n\nNumbered list:\n\n 1. apples \n 2. oranges\n 3. pears\n\n write your own markdown to test.\n\n *[Nada Sadek](https://freecodecamp.com/nadasadek)*'
     };
   }
   updateText= (event) => {
     this.setState({
-      text: event.target.value
+      value: event.target.value
     });
   };
- renderText = () => {
-   var markedResult = marked('I am using __markdown__.');
+ renderText = (text) => {
+   var markedResult = marked(text);
    return {__html: markedResult};
  };
   render() {
     return (
       <div className="row">
-        <div className="col-md-6"><Input inputValue={this.state.text} textChanged= {this.updateText} /></div>
-        <div className="col-md-6"> <span dangerouslySetInnerHTML= { this.renderText} /> </div>
+        <div className="col-md-6"><Input inputValue={this.state.value} textChanged= {this.updateText} /></div>
+        <div className="col-md-6"> <div dangerouslySetInnerHTML= {this.renderText(this.state.value)} /> </div>
       </div>
     );
   } 
@@ -28,7 +29,7 @@ class Input extends React.Component {
   }
   render(){
     return (
-      <div><textarea rows="60" cols="70" onChange={this.props.textChanged}>{this.props.inputValue}</textarea></div>
+      <div> <textarea type="text" rows="30" cols="70" onChange={this.props.textChanged} value={this.props.inputValue} /> </div>
     );
   }
 }

@@ -1,3 +1,17 @@
+body {
+  background-color: #A3C7E4;
+  font-family: "Raleway", cursive;
+}
+
+#container {
+  margin-top: 10px;
+  margin-left: 30px;
+}
+
+.b {
+  font-weight: bold;
+}
+
 textarea {
-  margin: 10px;
+  resize: vertical;
 }
